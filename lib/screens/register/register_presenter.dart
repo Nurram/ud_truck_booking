@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ud_truck_booking/const/utils.dart';
 
 abstract class RegisterContract {
@@ -65,13 +66,18 @@ class RegisterPresenter {
 
     final userRef = firestore.collection('users');
 
-    userRef
-        .add(data)
-        .then(
-          (value) => contract.onUserDataSaved(),
-        )
-        .catchError(
-          (error) => contract.onError(error.toString()),
-        );
+    userRef.add(data).then(
+      (value) async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('id', value.id);
+        print("TAG: id ${value.id}");
+
+        contract.onUserDataSaved();
+      },
+    ).catchError(
+      (error) {
+        contract.onError(error.toString());
+      },
+    );
   }
 }

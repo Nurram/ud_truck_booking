@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ud_truck_booking/const/utils.dart';
@@ -39,6 +37,8 @@ class _RegisterScreenState extends State<RegisterScreen>
   final _formOtpKey = GlobalKey<FormState>();
 
   final _otpCodeCtr = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
 
   bool _isInit = true;
   bool _isInRegister = true;
@@ -310,13 +310,12 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   _onSubmit() async {
     if (_formOtpKey.currentState!.validate()) {
-      final auth = FirebaseAuth.instance;
       final code = _otpCodeCtr.text.trim();
       final credential = PhoneAuthProvider.credential(
           verificationId: _verificationId, smsCode: code);
 
       try {
-        await auth.signInWithCredential(credential);
+        await _auth.signInWithCredential(credential);
         _saveUserData();
       } on FirebaseAuthException catch (e) {
         showSnackbar(context, e.message!, _theme.errorColor);
@@ -333,6 +332,7 @@ class _RegisterScreenState extends State<RegisterScreen>
       'password': _passwordCtr.text,
     };
 
+    _auth.signOut();
     _presenter.saveUserData(context, data);
   }
 

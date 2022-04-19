@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ud_truck_booking/const/utils.dart';
 
 abstract class LoginContract {
@@ -18,13 +19,17 @@ class LoginPresenter {
 
     final firestore = FirebaseFirestore.instance;
     final userRef = firestore.collection('users');
-    
+
     userRef
         .where('username', isEqualTo: username)
         .where('password', isEqualTo: password)
         .get()
-        .then((value) {
+        .then((value) async {
       if (value.size > 0) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('id', value.docChanges.first.doc.id);
+        print('TAG: id ${value.docChanges.first.doc.id}');
+
         contract.onLoginSuccess();
       } else {
         contract.onError('Invalid username/password!');
