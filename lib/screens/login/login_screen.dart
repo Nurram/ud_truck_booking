@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ud_truck_booking/const/utils.dart';
+import 'package:ud_truck_booking/screens/login/login_presenter.dart';
 import 'package:ud_truck_booking/screens/register/register_screen.dart';
 import 'package:ud_truck_booking/widgets/elevated_button.dart';
 import 'package:ud_truck_booking/widgets/text_form_field.dart';
@@ -10,8 +12,9 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> implements LoginContract {
   late Size _screenSize;
+  late LoginPresenter _presenter;
 
   final _usernameNode = FocusNode();
   final _passwordNode = FocusNode();
@@ -26,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void didChangeDependencies() {
     if (_isInit) {
       _screenSize = MediaQuery.of(context).size;
+      _presenter = LoginPresenter(contract: this);
       _isInit = false;
     }
 
@@ -156,6 +160,20 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _onSubmit() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      _presenter.login(context, _usernameCtr.text, _passwordCtr.text);
+    }
+  }
+
+  @override
+  void onError(String error) {
+    Navigator.pop(context);
+    showSnackbar(context, error, Theme.of(context).errorColor);
+  }
+
+  @override
+  void onLoginSuccess() {
+    Navigator.pop(context);
+    showSnackbar(context, 'Success!', Theme.of(context).errorColor);
   }
 }

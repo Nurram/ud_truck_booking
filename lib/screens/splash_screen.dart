@@ -14,21 +14,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        Timer(
-          const Duration(seconds: 1),
-          () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const IntroScreen(),
-            ),
-          ),
-        );
-      } else {
-        print('User is signed in!');
-      }
-    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const IntroScreen(),
+      ),
+    );
 
     super.initState();
   }
