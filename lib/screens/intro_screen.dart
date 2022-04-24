@@ -68,15 +68,15 @@ class _IntroScreenState extends State<IntroScreen> {
       _isInit = false;
 
       _slides.add(
-        _generateSlide('assets/images/intro/first.webp', 'Booking Service',
+        _generateSlide('assets/images/intro/first.png', 'Booking Service',
             'Kendaraanmu Sekarang'),
       );
       _slides.add(
-        _generateSlide('assets/images/intro/second.webp',
+        _generateSlide('assets/images/intro/second.png',
             'Dapatkan Banyak Kemudahan', 'Di Bengkel Kami'),
       );
       _slides.add(
-        _generateSlide('assets/images/intro/third.webp',
+        _generateSlide('assets/images/intro/third.png',
             'Kumpulkan Pointnya dan dapatkan', 'Berbagai Keuntungan nya'),
       );
     }

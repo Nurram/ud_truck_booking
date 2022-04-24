@@ -4,9 +4,14 @@ class MyElevatedButton extends StatelessWidget {
   final String text;
   final Function onPressed;
   final EdgeInsets? padding;
+  final double? borderRadius;
 
   const MyElevatedButton(
-      {Key? key, required this.text, required this.onPressed, this.padding})
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      this.padding,
+      this.borderRadius})
       : super(key: key);
 
   @override
@@ -21,7 +26,7 @@ class MyElevatedButton extends StatelessWidget {
               padding ?? const EdgeInsets.all(8)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(borderRadius ?? 8),
             ),
           ),
         ),

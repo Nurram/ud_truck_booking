@@ -9,6 +9,8 @@ class MyTextFormField extends StatelessWidget {
   final String? hintText;
   final bool? obscureText;
   final String? prefix;
+  final bool? readOnly;
+  final int? maxLines;
 
   const MyTextFormField(
       {Key? key,
@@ -19,7 +21,9 @@ class MyTextFormField extends StatelessWidget {
       this.labelText,
       this.hintText,
       this.obscureText,
-      this.prefix})
+      this.prefix,
+      this.readOnly,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -29,6 +33,9 @@ class MyTextFormField extends StatelessWidget {
       controller: textEditingController,
       keyboardType: textInputType ?? TextInputType.visiblePassword,
       obscureText: obscureText ?? false,
+      readOnly: readOnly ?? false,
+      // ignore: prefer_if_null_operators
+      maxLines: maxLines == null ? null : maxLines,
       decoration: InputDecoration(
         hintText: hintText,
         prefix: Text(prefix ?? ''),

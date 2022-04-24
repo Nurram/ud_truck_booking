@@ -11,6 +11,7 @@ extension EmailValidator on String {
 showSnackbar(BuildContext context, String msg, Color color) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      behavior: SnackBarBehavior.floating,
       content: Text(msg),
       backgroundColor: color,
     ),
@@ -34,5 +35,21 @@ showLoaderDialog(BuildContext context) {
     builder: (BuildContext context) {
       return alert;
     },
+  );
+}
+
+Future showMyBottomSheet(BuildContext context, Widget child) {
+  return showModalBottomSheet(
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.horizontal(
+        left: Radius.circular(16),
+        right: Radius.circular(16),
+      ),
+    ),
+    builder: (context) => Padding(
+      padding: const EdgeInsets.all(16),
+      child: child
+    ),
   );
 }

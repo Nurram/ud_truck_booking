@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ud_truck_booking/const/utils.dart';
+import 'package:ud_truck_booking/screens/dashboard/dashboard_screen.dart';
 import 'package:ud_truck_booking/screens/login/login_presenter.dart';
 import 'package:ud_truck_booking/screens/register/register_screen.dart';
 import 'package:ud_truck_booking/widgets/elevated_button.dart';
@@ -174,6 +175,11 @@ class _LoginScreenState extends State<LoginScreen> implements LoginContract {
   @override
   void onLoginSuccess() {
     Navigator.pop(context);
-    showSnackbar(context, 'Success!', Theme.of(context).errorColor);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const DashboardScreen(),
+      ),
+    );
   }
 }

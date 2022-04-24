@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ud_truck_booking/const/constants.dart';
 import 'package:ud_truck_booking/const/utils.dart';
 
 abstract class RegisterContract {
@@ -29,7 +26,7 @@ class RegisterPresenter {
       int? resendToken, ThemeData theme) async {
     showLoaderDialog(context);
 
-    final userRef = firestore.collection('users');
+    final userRef = firestore.collection(USERS);
     userRef.where('phone', isEqualTo: '+62$phoneNumber').get().then((value) {
       if (value.size > 0) {
         contract.onDataExist();
@@ -42,7 +39,7 @@ class RegisterPresenter {
   void _doVerification(String phoneNumber, int? resendToken) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+62$phoneNumber',
-      timeout: const Duration(seconds: 30),
+      timeout: const Duration(seconds: 10),
       verificationCompleted: (credential) {},
       verificationFailed: (e) {
         String msg = e.message ?? 'Something happened!';
@@ -61,17 +58,25 @@ class RegisterPresenter {
     );
   }
 
-  void saveUserData(BuildContext context, Map<String, dynamic> data) {
+  void saveUserData(BuildContext context, Map<String, dynamic> data) async {
     showLoaderDialog(context);
 
-    final userRef = firestore.collection('users');
+    final userRef = firestore.collection(USERS);
+    final pointRef = firestore.collection(POINTS);
 
-    userRef.add(data).then(
-      (value) async {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('id', value.id);
-        print("TAG: id ${value.id}");
+    String userId = '';
+    await userRef.add(data).then(
+      (value) {
+        userId = value.id;
+      },
+    ).catchError(
+      (error) {
+        contract.onError(error.toString());
+      },
+    );
 
+    pointRef.add({'userId': userId, 'point': 0}).then(
+      (value) {
         contract.onUserDataSaved();
       },
     ).catchError(

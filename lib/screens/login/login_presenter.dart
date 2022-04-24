@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ud_truck_booking/const/utils.dart';
@@ -26,9 +27,10 @@ class LoginPresenter {
         .get()
         .then((value) async {
       if (value.size > 0) {
+        await FirebaseAuth.instance.signInAnonymously();
+
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('id', value.docChanges.first.doc.id);
-        print('TAG: id ${value.docChanges.first.doc.id}');
 
         contract.onLoginSuccess();
       } else {

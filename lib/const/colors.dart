@@ -1,1 +1,1 @@
-const colorPimaryHex = 0xFFd2090f;
+const colorPimaryHex = 0xFFce1212;

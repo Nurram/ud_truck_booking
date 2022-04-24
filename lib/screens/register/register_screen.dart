@@ -281,7 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen>
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Belum meneirma kode?'),
+                const Text('Belum menerima kode?'),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -327,7 +327,7 @@ class _RegisterScreenState extends State<RegisterScreen>
     final data = {
       'fullname': _nameCtr.text,
       'username': _usernameCtr.text,
-      'phone': '+62${_phoneCtr.text}',
+      'phone': _phoneCtr.text,
       'email': _emailCtr.text,
       'password': _passwordCtr.text,
     };
