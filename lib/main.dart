@@ -35,6 +35,9 @@ class MyApp extends StatelessWidget {
             primary: const Color(colorPimaryHex),
           ),
         ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: Color(colorPimaryHex),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: TextButton.styleFrom(
             backgroundColor: const Color(colorPimaryHex),

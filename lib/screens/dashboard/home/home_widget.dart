@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ud_truck_booking/const/utils.dart';
+import 'package:ud_truck_booking/screens/dashboard/dashboard_screen.dart';
 import 'package:ud_truck_booking/screens/dashboard/home/booking/booking_screen.dart';
 import 'package:ud_truck_booking/screens/dashboard/home/home_presenter.dart';
 import 'package:ud_truck_booking/screens/dashboard/home/location/location_screen.dart';
@@ -34,44 +35,57 @@ class _HomeWidgetState extends State<HomeWidget> implements HomeContract {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          'assets/images/bg.webp',
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * .2,
-          fit: BoxFit.cover,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 32),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildImageSlider(),
-                const SizedBox(
-                  height: 40,
-                ),
-                _buildHorizontalMenu(),
-                const SizedBox(
-                  height: 32,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    'Promo Menarik',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildPromoList()
-              ],
+    return RefreshIndicator(
+      onRefresh: (() => Future.delayed(Duration.zero, () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const DashboardScreen(),
+              ),
+            );
+          })),
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/bg.webp',
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * .2,
+              fit: BoxFit.cover,
             ),
-          ),
-        )
-      ],
+            Padding(
+              padding: const EdgeInsets.only(top: 32),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildImageSlider(),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    _buildHorizontalMenu(),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Promo Menarik',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    _buildPromoList()
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
