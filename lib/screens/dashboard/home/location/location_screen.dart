@@ -54,8 +54,12 @@ class LocationScreen extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Text(
-                      _locationsData['branch'][index],
+                    FittedBox(
+                      child: Text(
+                        _locationsData['branch'][index],
+                        textAlign: TextAlign.center,
+                        softWrap: true,
+                      ),
                     ),
                   ],
                 ),
