@@ -78,59 +78,60 @@ class _BookingScreenState extends State<BookingScreen>
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          StepProgressWidget(
-            currentStep: _currentStep,
-            stepData: _titles,
-          ),
-          _buildForm(),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: _currentStep < 5
-                ? Row(
-                    children: [
-                      Expanded(
-                        child: TextButton(
-                            child: const Text('Back'),
-                            onPressed: () {
-                              if (_currentStep > 1) {
-                                setState(() {
-                                  _currentStep -= 1;
-                                });
-                              }
-                            }),
-                      ),
-                      Expanded(
-                        child: MyElevatedButton(
-                          text: 'Next',
-                          onPressed: () => _onNextClick(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StepProgressWidget(
+              currentStep: _currentStep,
+              stepData: _titles,
+            ),
+            _buildForm(),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: _currentStep < 5
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                              child: const Text('Back'),
+                              onPressed: () {
+                                if (_currentStep > 1) {
+                                  setState(() {
+                                    _currentStep -= 1;
+                                  });
+                                }
+                              }),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                    ],
-                  )
-                : _currentStep == 5
-                    ? Visibility(
-                        visible: _isAgree,
-                        child: MyElevatedButton(
-                          text: 'Submit',
-                          onPressed: () => _onSubmitClick(),
+                        Expanded(
+                          child: MyElevatedButton(
+                            text: 'Next',
+                            onPressed: () => _onNextClick(),
+                          ),
                         ),
-                      )
-                    : Visibility(
-                        visible: _isAgree,
-                        child: MyElevatedButton(
-                          text: 'Selesai',
-                          onPressed: () => Navigator.pop(context),
+                        const SizedBox(
+                          width: 16,
                         ),
-                      ),
-          )
-        ],
+                      ],
+                    )
+                  : _currentStep == 5
+                      ? Visibility(
+                          visible: _isAgree,
+                          child: MyElevatedButton(
+                            text: 'Submit',
+                            onPressed: () => _onSubmitClick(),
+                          ),
+                        )
+                      : Visibility(
+                          visible: _isAgree,
+                          child: MyElevatedButton(
+                            text: 'Selesai',
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ),
+            )
+          ],
+        ),
       ),
     );
   }

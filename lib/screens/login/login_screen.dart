@@ -106,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginContract {
             hintText: 'Password',
             labelText: 'Password',
             obscureText: true,
+            maxLines: 1,
             textInputType: TextInputType.visiblePassword,
             validator: (value) {
               if (value!.isEmpty) {

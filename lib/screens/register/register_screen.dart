@@ -190,6 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen>
             labelText: 'Password',
             textInputType: TextInputType.visiblePassword,
             obscureText: true,
+            maxLines: 1,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Field masih kosong!';
@@ -210,6 +211,7 @@ class _RegisterScreenState extends State<RegisterScreen>
             labelText: 'Konfirmasi Password',
             textInputType: TextInputType.visiblePassword,
             obscureText: true,
+            maxLines: 1,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Field masih kosong!';
