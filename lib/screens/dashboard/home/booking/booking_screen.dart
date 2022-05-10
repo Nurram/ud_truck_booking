@@ -158,7 +158,7 @@ class _BookingScreenState extends State<BookingScreen>
         formKey: _thirdFormKey,
         workshopCtr: _workshopCtr,
         dateCtr: _dateCtr,
-        estimationCtr: _estimationCtr,
+        estimationCtr: _durationCtr,
         hourCtr: _hourCtr,
       );
     } else if (_currentStep == 4) {

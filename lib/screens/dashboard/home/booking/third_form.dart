@@ -229,11 +229,6 @@ class _BookingThirdFormState extends State<BookingThirdForm>
       if (value != null) {
         final currentDate = DateFormat('EEEE, dd-MM-yyyy').format(value);
         widget.dateCtr.text = currentDate;
-        widget.estimationCtr.text = DateFormat('EEEE, dd-MM-yyyy').format(
-          value.add(
-            const Duration(days: 1),
-          ),
-        );
         _presenter.getHours(context, currentDate);
       }
     });
@@ -248,7 +243,6 @@ class _BookingThirdFormState extends State<BookingThirdForm>
   @override
   void onGetHours(List<Map<String, dynamic>> hours) {
     Navigator.pop(context);
-    print("TAG: Result $hours");
     hours.removeWhere(
       (element) => element['quota'] == 0,
     );

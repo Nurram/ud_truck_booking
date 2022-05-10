@@ -53,12 +53,12 @@ class _BookingFourthFormState extends State<BookingFourthForm> {
                 focusNode: widget.phoneNode,
                 textEditingController: widget.phoneCtr,
                 labelText: 'Nomor Whatsapp',
-                hintText: '823xxxxxxxx',
+                hintText: '0823xxxxxxxx',
                 textInputType: TextInputType.phone,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Field masih kosong!';
-                  } else if (value.length != 11 || !value.startsWith('8')) {
+                  } else if (value.length != 12 || !value.startsWith('08')) {
                     return 'Masukan nomor yang valid!';
                   }
 
