@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ud_truck_booking/const/utils.dart';
 import 'package:ud_truck_booking/screens/dashboard/dashboard_screen.dart';
+import 'package:ud_truck_booking/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ud_truck_booking/screens/login/login_presenter.dart';
 import 'package:ud_truck_booking/screens/register/register_screen.dart';
 import 'package:ud_truck_booking/widgets/elevated_button.dart';
@@ -123,7 +124,14 @@ class _LoginScreenState extends State<LoginScreen> implements LoginContract {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordScreen(),
+                    ),
+                  );
+                },
                 child: const Text('Forgot Password?'),
               ),
             ],

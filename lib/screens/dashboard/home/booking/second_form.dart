@@ -36,7 +36,7 @@ class _BookingSecondFormState extends State<BookingSecondForm> {
     'Service Paket 50.000',
     'Service Paket 60.000',
     'Service Paket 70.000',
-    'Service Paket 840.000',
+    'Service Paket 80.000',
     'Service Paket 90.000',
     'Service Paket 100.000',
     'Service Paket 110.000',
