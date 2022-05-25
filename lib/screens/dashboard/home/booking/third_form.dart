@@ -41,6 +41,10 @@ class _BookingThirdFormState extends State<BookingThirdForm>
     _presenter = BookingPresenter(thirdFormContract: this);
     Future.delayed(Duration.zero, () {
       widget.workshopCtr.text = _workshops[0];
+
+      final currentDate = DateFormat('EEEE, dd-MM-yyyy').format(DateTime.now());
+      widget.dateCtr.text = currentDate;
+      _presenter.getHours(context, currentDate);
     });
     super.initState();
   }
