@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "655317846850",
-    "project_id": "freelance-f9c5f",
-    "storage_bucket": "freelance-f9c5f.appspot.com"
+    "project_number": "524602513703",
+    "project_id": "ud-truck-sunter",
+    "storage_bucket": "ud-truck-sunter.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:655317846850:android:98d6e81eb746bfc71cd6db",
+        "mobilesdk_app_id": "1:524602513703:android:6a82091e4a2a2a2bb77102",
         "android_client_info": {
           "package_name": "com.daffa.ud_truck_booking"
         }
       },
       "oauth_client": [
         {
-          "client_id": "655317846850-vf8jln9uf6smkuci96idugk83k3peln7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.daffa.ud_truck_booking",
-            "certificate_hash": "fbb3ddc6eb2617c2f03d98904fef3a81e5f9fb10"
-          }
-        },
-        {
-          "client_id": "655317846850-sqctk311roig8rk5o951cd2dk951geoi.apps.googleusercontent.com",
+          "client_id": "524602513703-vvsgitmh47g0chj2ejc4b02relhjofeh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBE3guJiWDX0AVN4upOOChc5BmJIAwryZc"
+          "current_key": "AIzaSyAFq6yXsXxdrtYV1tnFMYtxLshLFaHQ_ZI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "655317846850-sqctk311roig8rk5o951cd2dk951geoi.apps.googleusercontent.com",
+              "client_id": "524602513703-vvsgitmh47g0chj2ejc4b02relhjofeh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

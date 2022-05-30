@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ud_truck_booking/const/utils.dart';
@@ -33,6 +34,9 @@ class HomePresenter {
           contract.onError(error.toString());
         });
       });
+    }).catchError((error) {
+      error as FirebaseException;
+      contract.onError(error.message.toString());
     });
     contract.onGetImages(imagePaths);
   }
@@ -52,9 +56,13 @@ class HomePresenter {
             .getDownloadURL()
             .then((url) => imagePaths.add(url))
             .catchError((error) {
-          contract.onError(error.toString());
+          error as FirebaseException;
+          contract.onError(error.message.toString());
         });
       });
+    }).catchError((error) {
+      error as FirebaseException;
+      contract.onError(error.message.toString());
     });
 
     contract.onGetPromoImages(imagePaths);

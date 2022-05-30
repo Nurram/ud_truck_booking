@@ -6,9 +6,13 @@ import 'package:flutter/services.dart';
 import 'package:ud_truck_booking/const/colors.dart';
 import 'package:ud_truck_booking/screens/splash_screen.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyApp());
 }

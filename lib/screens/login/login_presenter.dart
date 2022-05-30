@@ -27,8 +27,6 @@ class LoginPresenter {
         .get()
         .then((value) async {
       if (value.size > 0) {
-        await FirebaseAuth.instance.signInAnonymously();
-
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('id', value.docChanges.first.doc.id);
 
@@ -37,7 +35,8 @@ class LoginPresenter {
         contract.onError('Invalid username/password!');
       }
     }).catchError((error) {
-      contract.onError(error.toString());
+      error as FirebaseException;
+      contract.onError(error.message.toString());
     });
   }
 }

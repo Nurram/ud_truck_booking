@@ -16,7 +16,7 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> implements NewsContract {
   late NewsPresenter _presenter;
 
-  final _newsData = NewsData.getNews;
+  final _newsData = <Map<String, dynamic>>[];
 
   int _currentCarouselIndex = 0;
 
@@ -24,7 +24,7 @@ class _NewsScreenState extends State<NewsScreen> implements NewsContract {
   void initState() {
     _presenter = NewsPresenter(contract: this);
     Future.delayed(Duration.zero, () {
-      _presenter.getNewsImage(context);
+      _presenter.getNews(context);
     });
 
     super.initState();
@@ -42,22 +42,28 @@ class _NewsScreenState extends State<NewsScreen> implements NewsContract {
         ),
         backgroundColor: Colors.transparent,
       ),
-      body: _newsData['images'] == null ? Container() : _buildScreen(),
+      body: _newsData.isEmpty ? Container() : _buildScreen(),
     );
   }
 
   Widget _buildScreen() {
+    final imageLinks = <String>[];
+
+    for (var element in _newsData) {
+      imageLinks.add(element['image']);
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          _buildImageSlider(_newsData['images']!),
+          _buildImageSlider(imageLinks),
           Expanded(
             child: ListView.builder(
-              itemCount: _newsData['titles'].length,
+              itemCount: _newsData.length,
               itemBuilder: (context, index) {
-                return _buildListItem(_newsData['images'][index], index,
-                    _newsData['titles'][index]);
+                return _buildListItem(_newsData[index]['image'], index,
+                    _newsData[index]['title']);
               },
             ),
           ),
@@ -128,7 +134,7 @@ class _NewsScreenState extends State<NewsScreen> implements NewsContract {
   Widget _buildListItem(String imagePath, int index, String title) {
     return InkWell(
       onTap: () async {
-        await launch(_newsData['links'][index]);
+        await launch(_newsData[index]['link']);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -184,11 +190,12 @@ class _NewsScreenState extends State<NewsScreen> implements NewsContract {
   }
 
   @override
-  void onGetNewsImages(List<String> newsImagePath) {
+  void onGetNews(List<Map<String, dynamic>> news) {
     Navigator.pop(context);
 
     setState(() {
-      _newsData['images'] = newsImagePath;
+      _newsData.clear();
+      _newsData.addAll(news);
     });
   }
 }

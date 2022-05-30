@@ -336,7 +336,8 @@ class _BookingScreenState extends State<BookingScreen>
         'clientName': _nameCtr.text,
         'clientPhone': _phoneCtr.text,
         'clientEmail': _emailCtr.text,
-        'status': ON_PROGRESS
+        'status': ON_PROGRESS,
+        'timeStamp': DateTime.now().millisecondsSinceEpoch
       };
 
       _presenter.saveOrder(context, data);

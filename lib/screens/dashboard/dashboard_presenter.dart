@@ -39,7 +39,8 @@ class DashboardPresenter {
         _getPoints(context);
       },
     ).catchError((error) {
-      contract.onError(error.toString());
+      error as FirebaseException;
+      contract.onError(error.message.toString());
     });
   }
 

@@ -33,6 +33,9 @@ class RegisterPresenter {
       } else {
         _doVerification(phoneNumber, resendToken);
       }
+    }).catchError((error) {
+      error as FirebaseException;
+      contract.onError(error.message.toString());
     });
   }
 

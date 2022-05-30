@@ -8,3 +8,4 @@ const HOURS = 'hours';
 const ORDERS = 'orders';
 const ON_PROGRESS = 'onProgress';
 const COMPLETE = 'complete';
+const NEWS = 'news';
