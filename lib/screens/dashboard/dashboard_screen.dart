@@ -20,7 +20,12 @@ class _DashboardScreenState extends State<DashboardScreen>
   late DashboardPresenter _presenter;
 
   final _titles = ['', 'Order', '', 'Call Centre', ''];
-  final List<Widget> _screens = [const HomeWidget()];
+  final List<Widget> _screens = [
+    const HomeWidget(),
+    const OrderWidget(),
+    const Text(''),
+    const CallCenterWidget(),
+  ];
 
   int _botNavIndex = 0;
   String _username = 'Hi,';
@@ -180,12 +185,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   void onGetProfile(UserResponse user) {
     setState(() {
       _username = 'Hi, ${user.fullname}';
-      _screens.addAll([
-        const OrderWidget(),
-        const Text(''),
-        CallCenterWidget(phoneNumber: user.phone),
-        ProfileWidget(userName: user.fullname)
-      ]);
+      _screens.add(ProfileWidget(userName: user.fullname));
     });
   }
 

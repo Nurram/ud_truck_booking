@@ -94,7 +94,7 @@ class _HomeWidgetState extends State<HomeWidget> implements HomeContract {
 
     final items = _headerImages.map((e) => _buildImage(screenSize, e)).toList();
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         children: [
           CarouselSlider(

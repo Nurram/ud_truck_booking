@@ -3,9 +3,7 @@ import 'package:ud_truck_booking/const/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CallCenterWidget extends StatelessWidget {
-  final String phoneNumber;
-
-  const CallCenterWidget({Key? key, required this.phoneNumber})
+  const CallCenterWidget({Key? key})
       : super(key: key);
 
   @override
@@ -54,7 +52,7 @@ class CallCenterWidget extends StatelessWidget {
   _launchWa(BuildContext context) async {
     try {
       await launch(
-          "https://wa.me/+62$phoneNumber?text=Halo,%20ada%20yang%20mau%20saya%20tanyakan%20nih");
+          "https://wa.me/+628118899071?text=Halo,%20ada%20yang%20mau%20saya%20tanyakan%20nih");
     } catch (e) {
       showSnackbar(
           context, 'Whatsapp tidak ditemukan!', Theme.of(context).errorColor);

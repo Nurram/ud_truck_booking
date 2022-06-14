@@ -9,9 +9,11 @@ class BookingFirstForm extends StatefulWidget {
   final TextEditingController platCtr;
   final TextEditingController typeCtr;
   final TextEditingController kilometerCtr;
+  final TextEditingController vinCtr;
 
   final FocusNode platNoNode;
   final FocusNode kilometerNode;
+  final FocusNode vinNode;
 
   const BookingFirstForm(
       {Key? key,
@@ -19,8 +21,10 @@ class BookingFirstForm extends StatefulWidget {
       required this.platCtr,
       required this.typeCtr,
       required this.kilometerCtr,
+      required this.vinCtr,
       required this.platNoNode,
-      required this.kilometerNode})
+      required this.kilometerNode,
+      required this.vinNode})
       : super(key: key);
 
   @override
@@ -64,10 +68,27 @@ class _BookingFirstFormState extends State<BookingFirstForm> {
                 onTap: () => _showTypeBottomSheet(),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: MyTextFormField(
+                focusNode: widget.kilometerNode,
+                textEditingController: widget.kilometerCtr,
+                labelText: 'Kilometer',
+                hintText: '1000',
+                textInputType: TextInputType.number,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Field masih kosong!';
+                  }
+
+                  return null;
+                },
+              ),
+            ),
             MyTextFormField(
-              focusNode: widget.kilometerNode,
-              textEditingController: widget.kilometerCtr,
-              labelText: 'Kilometer',
+              focusNode: widget.vinNode,
+              textEditingController: widget.vinCtr,
+              labelText: 'No VIN',
               hintText: '1000',
               textInputType: TextInputType.number,
               validator: (value) {

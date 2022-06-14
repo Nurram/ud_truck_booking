@@ -33,6 +33,7 @@ class _BookingScreenState extends State<BookingScreen>
   final TextEditingController _platNoCtr = TextEditingController();
   final TextEditingController _typeCtr = TextEditingController();
   final TextEditingController _kilometerCtr = TextEditingController();
+  final TextEditingController _vinCtr = TextEditingController();
   final TextEditingController _jobTypeCtr = TextEditingController();
   final TextEditingController _problemCtr = TextEditingController();
   final TextEditingController _durationCtr = TextEditingController();
@@ -46,6 +47,7 @@ class _BookingScreenState extends State<BookingScreen>
 
   final FocusNode _platNoNode = FocusNode();
   final FocusNode _kilometerNode = FocusNode();
+  final FocusNode _vinNode = FocusNode();
   final FocusNode _problemNode = FocusNode();
   final FocusNode _nameNode = FocusNode();
   final FocusNode _phoneNode = FocusNode();
@@ -143,8 +145,10 @@ class _BookingScreenState extends State<BookingScreen>
         platCtr: _platNoCtr,
         typeCtr: _typeCtr,
         kilometerCtr: _kilometerCtr,
+        vinCtr: _vinCtr,
         platNoNode: _platNoNode,
         kilometerNode: _kilometerNode,
+        vinNode: _vinNode
       );
     } else if (_currentStep == 2) {
       return BookingSecondForm(
@@ -336,6 +340,7 @@ class _BookingScreenState extends State<BookingScreen>
         'clientName': _nameCtr.text,
         'clientPhone': _phoneCtr.text,
         'clientEmail': _emailCtr.text,
+        'noVin': _vinCtr.text,
         'status': ON_PROGRESS,
         'timeStamp': DateTime.now().millisecondsSinceEpoch
       };

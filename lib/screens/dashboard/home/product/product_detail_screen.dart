@@ -132,7 +132,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             items: itemWdiget,
             options: CarouselOptions(
                 viewportFraction: 1.0,
-                height: MediaQuery.of(context).size.height * .35,
                 onPageChanged: (index, reason) {
                   setState(() {
                     _currentCarouselIndex = index;
@@ -167,7 +166,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Image.asset(
       imagePath,
       fit: BoxFit.cover,
-      width: screenSize.width,
     );
   }
 }

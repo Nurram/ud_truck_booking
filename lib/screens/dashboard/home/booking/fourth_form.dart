@@ -58,7 +58,9 @@ class _BookingFourthFormState extends State<BookingFourthForm> {
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Field masih kosong!';
-                  } else if (value.length != 12 || !value.startsWith('08')) {
+                  } else if (value.length < 11 ||
+                      value.length > 12 ||
+                      !value.startsWith('08')) {
                     return 'Masukan nomor yang valid!';
                   }
 

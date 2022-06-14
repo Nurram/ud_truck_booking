@@ -260,7 +260,11 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen>
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1945),
-      lastDate: DateTime.now(),
+      lastDate: isBirthDate
+          ? DateTime.now()
+          : DateTime.now().add(
+              const Duration(days: 3650),
+            ),
     ).then((value) {
       if (value != null) {
         if (isBirthDate) {
