@@ -90,7 +90,7 @@ class _BookingFirstFormState extends State<BookingFirstForm> {
               textEditingController: widget.vinCtr,
               labelText: 'No VIN',
               hintText: '1000',
-              textInputType: TextInputType.number,
+              textInputType: TextInputType.text,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Field masih kosong!';
