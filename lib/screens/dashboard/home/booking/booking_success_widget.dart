@@ -23,7 +23,7 @@ class BookingSuccessWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
+              padding: const EdgeInsets.all(24),
               child: Image.asset('assets/images/booking_success.png'),
             ),
             const Padding(

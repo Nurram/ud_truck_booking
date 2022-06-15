@@ -44,6 +44,7 @@ dependencies:
   firebase_storage: ^10.2.12
   cupertino_stepper: ^0.2.1
   im_stepper: ^0.1.3
+  flutter_launcher_icons: ^0.9.3
   
 dev_dependencies:
   flutter_test:
@@ -101,3 +102,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  image_path: "assets/images/ud_logo.png"
+  android: true
+  ios: true
